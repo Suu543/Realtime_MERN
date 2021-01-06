@@ -13,12 +13,7 @@ const app = express();
 const typeDefs = mergeTypeDefs(loadFilesSync(path.join(__dirname, './typeDefs')));
 
 // resolvers
-const resolvers = {
-    Query: {
-        totalPosts: () => 42,
-        me: () => "Yongsu"
-    }
-};
+const resolvers = mergeResolvers(loadFilesSync(path.join(__dirname, './resolvers')))
 
 // graphql server
 const apolloServer = new ApolloServer({

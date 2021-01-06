@@ -7,7 +7,7 @@ const allPosts = () => posts;
 
 // mutation
 const newPost = (parent, args, context) => {
-    const { title, description } = args;
+    const { title, description } = args.input;
     console.log('parent', parent);
     console.log('args', args);
     // We need to generate an id

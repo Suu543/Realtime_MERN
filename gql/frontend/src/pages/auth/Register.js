@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
+import { auth } from '../../firebase';
 
 const Register = () => {
 
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const config = {
+            url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+            handleCodeInApp: true
+        }
+        
+        const result = await auth.sendSignInLinkToEmail(email, config);
+        console.log('result', result);
+        // Show toast notification to user about email sent
+
+        // Save User Email to LocalStorage
+        window.localStorage.setItem('emailFormRegistration', email);
+
+        // Clear State
+        setEmail('');
+        setLoading('');
     }
 
     return (

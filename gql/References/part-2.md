@@ -14,3 +14,6 @@ frontend - npm i react-router-dom
 
 - Navbar
 - https://mdbootstrap.github.io/bootstrap-material-design/docs/4.0/bootstrap-components/navbar/
+
+Confirmation Email using Firebase
+- https://firebase.google.com/docs/auth/web/email-link-auth

@@ -17,3 +17,24 @@ frontend - npm i react-router-dom
 
 Confirmation Email using Firebase
 - https://firebase.google.com/docs/auth/web/email-link-auth
+
+Toast Notification and loading
+```javascript
+npm i react-toastify
+```
+
+- effects create resources that need to be cleaned up before the component leaves the screen
+- https://reactjs.org/docs/hooks-reference.html#useeffect
+
+```javascript
+const logout = () => {
+    auth().signOut();
+    dispatch({
+        type: "LOGGED_IN_USER",
+        payload: null
+    });
+}
+
+history.push('/login');
+```
+- https://firebase.google.com/docs/auth/web/password-auth

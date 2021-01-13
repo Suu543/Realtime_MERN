@@ -6,3 +6,8 @@ Firebase and React
 frontend - npm i firebase
 ```
 <img src="https://cdn-images-1.medium.com/max/800/1*rQkVHO9HFH7GcWQHYcY32Q.png" />
+
+- In order to use Context
+```javascript
+frontend - npm i react-router-dom
+```

@@ -23,7 +23,7 @@ const Register = () => {
         toast.success(`Email is sent to ${email}. Click the link to complete your registration...`);
 
         // Save User Email to LocalStorage
-        window.localStorage.setItem('emailFormRegistration', email);
+        window.localStorage.setItem('emailForRegistration', email);
 
         // Clear State
         setEmail('');

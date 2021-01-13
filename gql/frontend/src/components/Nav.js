@@ -10,7 +10,7 @@ const Nav = () => {
     const { user } = state;
 
     const logout = () => {
-        auth().signOut();
+        auth.signOut();
         dispatch({
             type: "LOGGED_IN_USER",
             payload: null

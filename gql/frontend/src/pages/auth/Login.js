@@ -17,49 +17,82 @@ const Login = () => {
         setLoading(true);
 
         try {
-            await auth.signInWithEmailAndPassword(email, password)
-                .then(async result => {
-                    const { user } = result;
-                    const idTokenResult = await user.getIdTokenResult();
+            const { user }  = await auth.signInWithEmailAndPassword(email, password);
+            const idTokenResult = await user.getIdTokenResult();
 
-                    dispatch({
-                        type: "LOGGED_IN_USER",
-                        payload: {
-                            email: user.email,
-                            token: idTokenResult.token
-                        }
-                    });
+            dispatch({
+                type: "LOGGED_IN_USER",
+                payload: {
+                    email: user.email,
+                    token: idTokenResult.token
+                }
+            })
 
-                    // Send user info to our server mongodb to either update/create
-
-                    history.push('/');
-                });
-        } catch(error) {
+            history.push('/');
+        } catch (error) {
             console.log('Login Error', error);
             toast.error(error.message);
             setLoading(false);
         }
+    
+        // try {
+        //     await auth.signInWithEmailAndPassword(email, password)
+        //         .then(async result => {
+        //             const { user } = result;
+        //             const idTokenResult = await user.getIdTokenResult();
+
+        //             dispatch({
+        //                 type: "LOGGED_IN_USER",
+        //                 payload: {
+        //                     email: user.email,
+        //                     token: idTokenResult.token
+        //                 }
+        //             });
+
+        //             // Send user info to our server mongodb to either update/create
+
+        //             history.push('/');
+        //         });
+        // } catch(error) {
+        //     console.log('Login Error', error);
+        //     toast.error(error.message);
+        //     setLoading(false);
+        // }
 
     }
 
-    const googleLogin = () => {
-        auth.signInWithPopup(googleAuthProvider)
-            .then(async result => {
-                const { user } = result;
-                const idTokenResult = await user.getIdTokenResult();
+    const googleLogin = async () => {
+        const { user } = await auth.signInWithPopup(googleAuthProvider);
+        const idTokenResult = await user.getIdTokenResult();
 
-                dispatch({
-                    type: "LOGGED_IN_USER",
-                    payload: {
-                        email: user.email,
-                        token: idTokenResult.token
-                    }
-                });
+        dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+                email: user.email,
+                token: idTokenResult.token
+            }
+        })
 
-                // Send user info to our server mongodb to either update/create
+        // Send user info to our server mongodb to either update/create
+        history.push('/');
 
-                history.push('/');
-            });
+        // auth.signInWithPopup(googleAuthProvider)
+        //     .then(async result => {
+        //         const { user } = result;
+        //         const idTokenResult = await user.getIdTokenResult();
+
+        //         dispatch({
+        //             type: "LOGGED_IN_USER",
+        //             payload: {
+        //                 email: user.email,
+        //                 token: idTokenResult.token
+        //             }
+        //         });
+
+        //         // Send user info to our server mongodb to either update/create
+
+        //         history.push('/');
+        //     });
     }
 
     return (
